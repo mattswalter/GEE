@@ -2,6 +2,8 @@
 
 ## Author: Matthew Walter
 
+* roi = Set region of interest
+
 NAIP_Principal_Component_Analysis: Run a Principal Component Analysis (PCA) on the four band National Agriculture Imagery Program (NAIP) data.
 
 zonal_stat: Calculate statistics of an image within a feature collection
