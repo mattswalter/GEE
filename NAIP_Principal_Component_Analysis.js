@@ -7,9 +7,7 @@ var dataset = ee.ImageCollection('USDA/NAIP/DOQQ')
 .max()
 .clip(roi);
 
-Map.addLayer(dataset);
-
-
+Map.addLayer(dataset, {}, 'Original NAIP image');
 
 var image = dataset
 
@@ -99,11 +97,18 @@ print(pcImage)
 
 // Create a stack of four pca bands
 var pc1 = pcImage.select(['pc1']).rename('PC1')
+Map.addLayer(pc1, {min: -2, max: 2}, 'PCA 1');
 
 var pc2 = pcImage.select(['pc2']).rename('PC2')
+Map.addLayer(pc2, {min: -2, max: 2}, 'PCA 2');
 
 var pc3 = pcImage.select(['pc3']).rename('PC3')
+Map.addLayer(pc3, {min: -2, max: 2}, 'PCA 3');
 
 var pc4 = pcImage.select(['pc4']).rename('PC4')
+Map.addLayer(pc4, {min: -2, max: 2}, 'PCA 4');
 
 var pca = pc1.addBands(pc2).addBands(pc3).addBands(pc4)
+
+// Map layer with the first three pca bands
+Map.addLayer(pca, {min: -2, max: 2, bands:['PC1', 'PC2', 'PC3']}, 'PCA Image');
