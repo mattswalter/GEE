@@ -4,7 +4,7 @@ var collectionVV = ee.ImageCollection('COPERNICUS/S1_GRD')
     .filter(ee.Filter.eq('instrumentMode', 'IW'))
     .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
     .filter(ee.Filter.eq('orbitProperties_pass', 'ASCENDING'))
-    .filterBounds(de)
+    .filterBounds(roi)
     .filterDate('2018-01-01', '2018-12-31')
     .select(['VV']);
 print(collectionVV);
@@ -15,7 +15,7 @@ var collectionVH = ee.ImageCollection('COPERNICUS/S1_GRD')
     .filter(ee.Filter.eq('instrumentMode', 'IW'))
     .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
     .filter(ee.Filter.eq('orbitProperties_pass', 'ASCENDING'))
-    .filterBounds(de)
+    .filterBounds(roi)
     .filterDate('2018-01-01', '2018-12-31')
     .select(['VH']);
 print(collectionVH);
@@ -41,9 +41,9 @@ var VH3 = ee.Image(collectionVH.filterDate('2018-10-01', '2018-12-31').median())
 
 
 // Add VV seasonal composite to map
-var season_composite = VV1.addBands(VV2).addBands(VV3).clip(de)
+var season_composite = VV1.addBands(VV2).addBands(VV3).clip(roi)
 //Add VH seasonal composite to map
-var season_composite1 = VH1.addBands(VH2).addBands(VH3).clip(de)
+var season_composite1 = VH1.addBands(VH2).addBands(VH3).clip(roi)
 
 Map.addLayer(season_composite, {min: -12, max: -7}, 'Season composite VV');
 Map.addLayer(season_composite1, {min: -20, max: -7}, 'Season composite VH');
