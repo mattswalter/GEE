@@ -3,7 +3,7 @@
 // Import and clip NAIP data
 var dataset = ee.ImageCollection('USDA/NAIP/DOQQ') 
 .filterBounds(roi) 
-.filterDate('2013-01-01','2013-09-30')
+.filterDate('2012-01-01','2014-12-30')
 .max()
 .clip(roi);
 
