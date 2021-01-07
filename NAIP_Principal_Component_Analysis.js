@@ -15,9 +15,6 @@ var image = dataset
 // Display the input imagery and the region in which to do the PCA.
 var region = image.geometry();
 
-//Map.addLayer(ee.Image().paint(Merged_counties, 0, 2), {}, 'Region');
-
-
 // Set some information about the input to be used later.
 var scale = 30;
 var bandNames = image.bandNames();
